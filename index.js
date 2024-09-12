@@ -18,14 +18,13 @@ function createGrid(size) {
 
 function printGrid(grid, revealedCells) {
     const size = grid.length;
-    const cellWidth = 4; // Width of each cell including padding
+    const cellWidth = 4;
     const header = '   ' + Array.from({ length: size }, (_, i) => (i + 1).toString().padStart(cellWidth, ' ')).join(' ');
 
-    // Print the top border
+
     console.log('  ' + '─'.repeat(header.length));
     console.log(header);
 
-    // Print each row with borders
     grid.forEach((row, i) => {
         const rowLabel = String.fromCharCode(65 + i) + ' ';
         const rowData = row.map((cell, j) => {
@@ -111,8 +110,6 @@ function main() {
     const grid = createGrid(size);
     const ships = shipsConfig[size];
     placeAllShips(grid, ships);
-
-    // Create a map to track ship sections and hits
     const shipSections = new Map();
     const shipSymbols = new Set();
 
@@ -120,7 +117,6 @@ function main() {
         const symbol = ship.length === 2 ? SHIP_2 : SHIP_3;
         shipSymbols.add(symbol);
         for (let i = 0; i < ship.count; i++) {
-            // Find each section of each ship and track hits
             const sections = [];
             for (let row = 0; row < size; row++) {
                 for (let col = 0; col < size; col++) {
